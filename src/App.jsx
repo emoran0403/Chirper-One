@@ -1,0 +1,74 @@
+//* Imports
+import React from "react";
+import { useState } from "react";
+import moment from "moment";
+import { v4 as uuidv4 } from "uuid";
+
+//* Component Imports
+import Inputs from "./components/Inputs";
+import Timeline from "./components/Timeline";
+
+const App = () => {
+  const [username, setUsername] = useState("");
+  const [loggedIn, setloggedIn] = useState(false);
+  const [chirp, setChirp] = useState("");
+  const [chirpTime, setChirpTime] = useState("");
+  const [uuid, setUuid] = useState("");
+
+  //set the username whatever was entered in the login text box
+  const handleUsername = (e) => {
+    return setUsername(e.target.value);
+  };
+
+  //toggles the logged in status, thus rendering Timeline and Inputs
+  const handleloggedIn = () => {
+    return setloggedIn(!loggedIn);
+  };
+
+  //sets the timestamp to be passed to Timeline
+  const setChirpTime = () => {
+    return moment().format("MMM Do YY");
+  };
+
+  //sets a universally unique identifier to be passed to Timeline
+  const setUuid = () => {
+    return uuidv4();
+  };
+
+  //gets the text from the input box to be passed to Timeline
+  //calls setTimestamp
+  const handleSetChirp = () => {
+    let target = document.getElementById("chirpBox");
+    let message = target.value;
+    setChirpTime();
+    setUuid();
+    return setChirp(message);
+  };
+
+  return (
+    <div>
+      <h1>Chirper One</h1> {/**this is always shown */}
+      {loggedIn ? ( // this displays when loggedIn=true
+        <>
+          <Inputs username={username} setChirp={handleSetChirp} />
+          <Timeline username={username} message={chirp} chirpTime={chirpTime} uuid={uuid} />
+        </>
+      ) : (
+        // this displays when loggedIn=false
+        <>
+          <h3>Please log in below</h3>
+          <input type="text" onChange={handleUsername} value={username} />
+          <button type="button" onClick={handleloggedIn}>
+            Login
+          </button>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default App;
+
+//!  how to get bootstrap imported for styling
+//! why is it not liking 'setChirpTime'
+//! do i use .push or .map in my array of chirps
