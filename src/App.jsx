@@ -11,9 +11,8 @@ import Timeline from "./components/Timeline";
 const App = () => {
   const [username, setUsername] = useState("");
   const [loggedIn, setloggedIn] = useState(false);
-  const [chirp, setChirp] = useState("");
-  const [chirpTime, setChirpTime] = useState("");
-  const [uuid, setUuid] = useState("");
+  const [chirps, setChirps] = useState([{ ChirpTime: moment().format("MMM Do YY"), uuid: uuidv4(), message: "starting message" }]);
+  const [hasChirped, setHasChirped] = useState(false);
 
   //set the username whatever was entered in the login text box
   const handleUsername = (e) => {
@@ -25,25 +24,27 @@ const App = () => {
     return setloggedIn(!loggedIn);
   };
 
-  //sets the timestamp to be passed to Timeline
-  const handleChirpTime = () => {
-    return setChirpTime(moment().format("MMM Do YY"));
-  };
-
-  //sets a universally unique identifier to be passed to Timeline
-  const handleSetUuid = () => {
-    return setUuid(uuidv4());
-  };
-
   //gets the text from the input box to be passed to Timeline
   //calls setTimestamp
-  const handleSetChirp = () => {
-    let target = document.getElementById("chirpBox"); // targets the text box in Inputs component
-    let message = target.value; // assigns the value of the text box to message
-    // setChirpTime();
-    // setUuid();
-    return setChirp(message); // passes message to setChirp
+  const handleSetChirp = (message) => {
+    let chirpObject = {
+      // creates a chirp with relevant info
+      ChirpTime: moment().format("MMM Do YY"),
+      uuid: uuidv4(),
+      message,
+    };
+
+    if (hasChirped) {
+      // on chirp 2+, keep the old chirps and add the new one
+      setChirps([...chirps, chirpObject]);
+    } else {
+      // on first chirp, set the array to contain the first chirp
+      setChirps([chirpObject]);
+      setHasChirped(true);
+    }
   };
+
+  //this happens after a render, but this is what i need it to render = it seems like i need it to render once to trigger this, then this will update the pagee
 
   return (
     <div>
@@ -51,7 +52,7 @@ const App = () => {
       {loggedIn ? ( // this displays when loggedIn=true
         <>
           <Inputs username={username} setChirp={handleSetChirp} />
-          <Timeline username={username} message={chirp} chirpTime={chirpTime} uuid={uuid} />
+          <Timeline username={username} messages={chirps} />
         </>
       ) : (
         // this displays when loggedIn=false
