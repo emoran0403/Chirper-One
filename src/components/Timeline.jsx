@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
+// given an array of objects, destructure them and create a card with each object's properties
+// note the key takes the value of the uuid that was passed in on the object
 const Timeline = (props) => {
   return (
     <>
@@ -21,5 +23,3 @@ const Timeline = (props) => {
 };
 
 export default Timeline;
-
-// <p>Here is some array: {startingArray}</p>

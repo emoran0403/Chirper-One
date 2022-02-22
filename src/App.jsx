@@ -9,23 +9,25 @@ import Inputs from "./components/Inputs";
 import Timeline from "./components/Timeline";
 
 const App = () => {
-  const [username, setUsername] = useState("");
-  const [loggedIn, setloggedIn] = useState(false);
-  const [chirps, setChirps] = useState([{ ChirpTime: moment().format("MMM Do YY"), uuid: uuidv4(), message: "starting message" }]);
-  const [hasChirped, setHasChirped] = useState(false);
+  const [username, setUsername] = useState(""); // used to display the username
+  const [loggedIn, setloggedIn] = useState(false); // used to conditionally display components
+  const [hasChirped, setHasChirped] = useState(false); // used to hide the initial Chirp
 
-  //set the username whatever was entered in the login text box
+  // intitializes an array of objects within which to store user Chirps.
+  const [chirps, setChirps] = useState([{ ChirpTime: moment().format("MMM Do YY"), uuid: uuidv4(), message: `Type in the box above to send your first Chirp!` }]);
+
+  // set the username to the value of the login text box
   const handleUsername = (e) => {
     return setUsername(e.target.value);
   };
 
-  //toggles the logged in status, thus rendering Timeline and Inputs
+  // toggles the logged in status, thus rendering Timeline and Inputs
   const handleloggedIn = () => {
     return setloggedIn(!loggedIn);
   };
 
-  //gets the text from the input box to be passed to Timeline
-  //calls setTimestamp
+  // creates the chirpObject, which contains the message passed from the Input component,
+  // sets the time and uuid on the chirpObject
   const handleSetChirp = (message) => {
     let chirpObject = {
       // creates a chirp with relevant info
@@ -35,16 +37,14 @@ const App = () => {
     };
 
     if (hasChirped) {
-      // on chirp 2+, keep the old chirps and add the new one
+      // on chirp 2+, keeps the old chirps and add the new one
       setChirps([...chirps, chirpObject]);
     } else {
-      // on first chirp, set the array to contain the first chirp
+      // on first chirp, set the array to override the initial Chirp, and set hasChirped to True
       setChirps([chirpObject]);
       setHasChirped(true);
     }
   };
-
-  //this happens after a render, but this is what i need it to render = it seems like i need it to render once to trigger this, then this will update the pagee
 
   return (
     <div>
@@ -71,11 +71,12 @@ const App = () => {
 
 export default App;
 
+// {condition && (dothiswhentrue)} //shows jsx when condition is true.  if false, returns nothing
+// {!condition && (dothiswhenfalse)} // when condition is false, returns jsx, when true, returns nothing
+//   {condition || (dothiswhenfalse)} // returns when condition false.  if condition is true, returns true, but doenst do anything
+//   {conditon && today === 'tuesday' && true && <p>lol</p>}
+
 //*  how to get bootstrap imported for styling - import "bootstrap/dist/css/bootstrap.min.css";
-
 //* why is it not liking 'setChirpTime' - it was defined in the useState declaration, i needed to reference it with the handleChirpTime convention
-
-//! do i use .push or .map in my array of chirps
-
-//! need to find a way to call chirpTime, Uuid, and setChirp all at once when the chirp button is pressed
-//!how do i use
+//* do i use .push or .map in my array of chirps - use spread <...> to keep the old elements and add new ones
+//* need to find a way to call chirpTime, Uuid, and setChirp all at once when the chirp button is pressed - we switched these to just function calls and added that roperty to the chirp object
