@@ -1,8 +1,8 @@
 //* Imports
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 //* Component Imports
 import Inputs from "./components/Inputs";
@@ -26,13 +26,13 @@ const App = () => {
   };
 
   //sets the timestamp to be passed to Timeline
-  const setChirpTime = () => {
-    return moment().format("MMM Do YY");
+  const handleChirpTime = () => {
+    return setChirpTime(moment().format("MMM Do YY"));
   };
 
   //sets a universally unique identifier to be passed to Timeline
-  const setUuid = () => {
-    return uuidv4();
+  const handleSetUuid = () => {
+    return setUuid(uuidv4());
   };
 
   //gets the text from the input box to be passed to Timeline
@@ -40,8 +40,8 @@ const App = () => {
   const handleSetChirp = () => {
     let target = document.getElementById("chirpBox");
     let message = target.value;
-    setChirpTime();
-    setUuid();
+    // setChirpTime();
+    // setUuid();
     return setChirp(message);
   };
 
@@ -58,7 +58,8 @@ const App = () => {
         <>
           <h3>Please log in below</h3>
           <input type="text" onChange={handleUsername} value={username} />
-          <button type="button" onClick={handleloggedIn}>
+          <br />
+          <button className="btn btn-primary" type="button" onClick={handleloggedIn}>
             Login
           </button>
         </>
@@ -69,6 +70,11 @@ const App = () => {
 
 export default App;
 
-//!  how to get bootstrap imported for styling
-//! why is it not liking 'setChirpTime'
+//*  how to get bootstrap imported for styling - import "bootstrap/dist/css/bootstrap.min.css";
+
+//* why is it not liking 'setChirpTime' - it was defined in the useState declaration, i needed to reference it with the handleChirpTime convention
+
 //! do i use .push or .map in my array of chirps
+
+//! need to find a way to call chirpTime, Uuid, and setChirp all at once when the chirp button is pressed
+//!how do i use

@@ -7,7 +7,8 @@ const Inputs = (props) => {
 
       <form>
         <input id="chirpBox" type="text"></input>
-        <input type="button" value="Send Chirp" onClick={props.setChirp}></input>
+        <br />
+        <input className="btn btn-primary" type="button" value="Send Chirp" onClick={props.setChirp}></input>
       </form>
     </>
   );

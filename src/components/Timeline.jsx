@@ -1,32 +1,42 @@
-import React from "react";
-import { useEffect } from "react";
-import bootstrap from "bootstrap";
+import React, { useState, useEffect } from "react";
 
 const Timeline = (props) => {
-  const startingArray = ["message 1 is here as a test"];
-
-  startingArray.push(props.message); // this adds only the last message onto the array, it does not chain them as i thought it would
-  const chirpTime = props.timestamp; //used to display the time the chrp was sent
+  const [startingArray, setArray] = useState(["message 1 is here as a test"]);
 
   useEffect(() => {
-    //   does my array get updated inside this use effect?
-  });
+    setArray([...startingArray, props.message]);
+  }, []);
 
   return (
     <>
-      {/* <div>Hello Timeline</div>
-      <p>Here is some array: {startingArray}</p> */}
-      <div className="card" style="width: 18rem;">
-        <div className="card-body">
-          <h5 className="card-title">{props.username}</h5>
-          <h6 className="card-subtitle mb-2 text-muted">{props.chirpTime}</h6>
-          <p className="card-text">{props.message}</p>
-          <footer className="blockquote-footer">{props.uuid}</footer>
-        </div>
+      <div>Hello Timeline</div>
+      <div>
+        Here is some array:
+        {startingArray.map((msg) => (
+          <p>{msg}</p>
+        ))}
       </div>
-      ;
     </>
   );
 };
 
 export default Timeline;
+
+// <p>Here is some array: {startingArray}</p>
+// <div className="card" style="width: 18rem;">
+//   <div className="card-body">
+//     <h5 className="card-title">{props.username}</h5>
+//     <h6 className="card-subtitle mb-2 text-muted">{props.chirpTime}</h6>
+//     <p className="card-text">{props.message}</p>
+//     <footer className="blockquote-footer">{props.uuid}</footer>
+//   </div>
+// </div>
+//
+//
+//
+//
+//
+//
+//
+//
+//
