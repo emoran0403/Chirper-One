@@ -4,8 +4,9 @@ const Timeline = (props) => {
   const [startingArray, setArray] = useState(["message 1 is here as a test"]);
 
   useEffect(() => {
+    //this happens after a render, but this is what i need it to render = it seems like i need it to render once to trigger this, then this will update the pagee
     setArray([...startingArray, props.message]);
-  }, []);
+  }, [props.message]);
 
   return (
     <>
@@ -31,12 +32,6 @@ export default Timeline;
 //     <footer className="blockquote-footer">{props.uuid}</footer>
 //   </div>
 // </div>
-//
-//
-//
-//
-//
-//
 //
 //
 //

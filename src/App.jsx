@@ -38,11 +38,11 @@ const App = () => {
   //gets the text from the input box to be passed to Timeline
   //calls setTimestamp
   const handleSetChirp = () => {
-    let target = document.getElementById("chirpBox");
-    let message = target.value;
+    let target = document.getElementById("chirpBox"); // targets the text box in Inputs component
+    let message = target.value; // assigns the value of the text box to message
     // setChirpTime();
     // setUuid();
-    return setChirp(message);
+    return setChirp(message); // passes message to setChirp
   };
 
   return (
@@ -56,7 +56,7 @@ const App = () => {
       ) : (
         // this displays when loggedIn=false
         <>
-          <h3>Please log in below</h3>
+          <h5>Please log in below</h5>
           <input type="text" onChange={handleUsername} value={username} />
           <br />
           <button className="btn btn-primary" type="button" onClick={handleloggedIn}>
