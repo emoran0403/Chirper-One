@@ -83,6 +83,7 @@ class App extends React.Component {
         </div>
 
         <div className="d-flex justify-content-around">
+          {/* <Homepage /> */}
           <Inputs />
           <Timeline />
         </div>

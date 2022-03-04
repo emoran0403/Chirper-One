@@ -20,9 +20,9 @@ class Inputs extends React.Component {
 
   render() {
     return (
-      <main className="container">
-        <section className="row justify-content-center">
-          <div className="col-md-6 card">
+      <main className="container ">
+        <section className="row justify-content-center ">
+          <div className="col-md-6 card bg-light">
             <form className="form-group">
               <input className="form-control mt-3" placeholder="Chirp box!" type="text" />
 
@@ -30,9 +30,9 @@ class Inputs extends React.Component {
                 <div>
                   <p className="mt-3">Does your Chirp contain any Ervin Howell?</p>
                   <input className="mx-2" type="radio" id="ehyes" name="eh" value="yes" />
-                  <label for="yes">Yes</label>
+                  <label htmlFor="yes">Yes</label>
                   <input className="mx-2" type="radio" id="ehno" name="eh" value="no" />
-                  <label for="no">No</label>
+                  <label htmlFor="no">No</label>
                 </div>
                 <div>
                   <button type="button" onClick={(e) => this.props.chirpSetter(e)} className="btn btn-primary">
@@ -45,7 +45,7 @@ class Inputs extends React.Component {
               <hr></hr>
               <div className="mb-3 d-flex justify-content-between align-items-center">
                 <div>
-                  <label for="ehAmount">How much Ervin Howell is contained in your Chirp?</label>
+                  <label htmlFor="ehAmount">How much Ervin Howell is contained in your Chirp?</label>
                   <select className="my-2" id="ehAmount" name="ehAmount">
                     <option value="">--Please choose an option--</option>
                     <option value="Not enough">Not enough</option>
