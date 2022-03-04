@@ -1,6 +1,26 @@
 import React, { useState } from "react";
 
 class Inputs extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "React",
+      containsEH: false,
+    };
+    this.onValueChange = this.onValueChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  onValueChange(event) {
+    this.setState({
+      containsEH: event.target.value,
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.containsEH);
+  }
   // const [inputText, setInputText] = useState("");
 
   // const handleInputText = (e) => {
@@ -22,20 +42,45 @@ class Inputs extends React.Component {
     return (
       <main className="container ">
         <section className="row justify-content-center ">
-          <div className="col-md-6 card bg-light">
-            <form className="form-group">
+          <div className="col-md-7 card bg-light">
+            <form onSubmit={this.handleSubmit} className="form-group">
               <input className="form-control mt-3" placeholder="Chirp box!" type="text" />
 
               <div className="mb-3 d-flex justify-content-between align-items-center">
                 <div>
                   <p className="mt-3">Does your Chirp contain any Ervin Howell?</p>
-                  <input className="mx-2" type="radio" id="ehyes" name="eh" value="yes" />
-                  <label htmlFor="yes">Yes</label>
-                  <input className="mx-2" type="radio" id="ehno" name="eh" value="no" />
-                  <label htmlFor="no">No</label>
+
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="mx-2 form-check-input"
+                      type="radio"
+                      id="ehyes"
+                      name="eh"
+                      value={this.state.containsEH}
+                      checked={this.state.containsEH === true}
+                      onChange={this.onValueChange}
+                    />
+                    <label className="form-check-label" htmlFor="true">
+                      Yes
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="mx-2 form-check-input"
+                      type="radio"
+                      id="ehno"
+                      name="eh"
+                      value={this.state.containsEH}
+                      checked={this.state.containsEH === false}
+                      onChange={this.onValueChange}
+                    />
+                    <label className="form-check-label" htmlFor="false">
+                      No
+                    </label>
+                  </div>
                 </div>
                 <div>
-                  <button type="button" onClick={(e) => this.props.chirpSetter(e)} className="btn btn-primary">
+                  <button type="submit" className="btn btn-primary">
                     Chirp
                   </button>
                 </div>
@@ -46,7 +91,7 @@ class Inputs extends React.Component {
               <div className="mb-3 d-flex justify-content-between align-items-center">
                 <div>
                   <label htmlFor="ehAmount">How much Ervin Howell is contained in your Chirp?</label>
-                  <select className="my-2" id="ehAmount" name="ehAmount">
+                  <select className="my-2 form-select" id="ehAmount" name="ehAmount">
                     <option value="">--Please choose an option--</option>
                     <option value="Not enough">Not enough</option>
                     <option value="Just a little bit">Just a little bit</option>
