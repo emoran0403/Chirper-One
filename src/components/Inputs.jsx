@@ -21,8 +21,8 @@ class Inputs extends React.Component {
   render() {
     return (
       <main className="container">
-        <section className="row justify-content-center mt-5">
-          <div className="col-md-5 card">
+        <section className="row justify-content-center">
+          <div className="col-md-6 card">
             <form className="form-group">
               <input className="form-control mt-3" placeholder="Chirp box!" type="text" />
 
@@ -41,8 +41,8 @@ class Inputs extends React.Component {
                 </div>
               </div>
 
+              {/* **************Conditionally render this based on whether chrip contains ervin howell************ */}
               <hr></hr>
-
               <div className="mb-3 d-flex justify-content-between align-items-center">
                 <div>
                   <label for="ehAmount">How much Ervin Howell is contained in your Chirp?</label>
@@ -51,8 +51,8 @@ class Inputs extends React.Component {
                     <option value="Not enough">Not enough</option>
                     <option value="Just a little bit">Just a little bit</option>
                     <option value="A fair amount">A fair amount</option>
-                    <option value="A little more than necessary">A little more than necessary</option>
-                    <option value="Over 9000">Over 9000</option>
+                    <option value="A little more than necessary">A little more than necessary,</option>
+                    <option value="Over 9000">Over 9000!</option>
                     <option value="10.25 Howells worth">10.25 Howells worth</option>
                     <option value="Too much!">Too much!</option>
                     <option value="Enough to make Andrew cry">Enough to make Andrew cry</option>
@@ -65,6 +65,7 @@ class Inputs extends React.Component {
                   </button>
                 </div>
               </div>
+              {/* ****************************************************************************************************** */}
             </form>
           </div>
         </section>

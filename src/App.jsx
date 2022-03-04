@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //* Component Imports
 import Inputs from "./components/Inputs";
 import Timeline from "./components/Timeline";
+import Homepage from "./components/Homepage";
 import { render } from "@testing-library/react";
 
 class App extends React.Component {
@@ -77,15 +78,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Chirper One</h1>
-        {/* <Timeline /> */}
-        <Inputs />
-        {/* <h5>Please log in below</h5>
-        <input type="text" />
-        <br />
-        <button className="btn btn-primary" type="button">
-          Login
-        </button> */}
+        <div className="mt-3 mb-5">
+          <h1 className="text-center">Chirper One</h1>
+        </div>
+
+        <div className="d-flex justify-content-around">
+          <Inputs />
+          <Timeline />
+        </div>
       </div>
     );
   }
@@ -106,7 +106,13 @@ export default App;
 /**
  * todo - default to the no radio button
  * todo - render radio button checks reactfully
- * todo - conditionally render the
+ * todo - conditionally render the bottom half of the chirp input box based on the radio buttons
+ * todo - pass a state setter down to the inuts component
+ * todo - get the input from the chirpbox, radio buttons, and selector all into an object
+ * todo - pass that object into state and send it to App
+ * ?done - refactor Timeline to display the chirps with the new data
+ * todo - make a home page component where the user will log in
+ *
  *
  *
  *
