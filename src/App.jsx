@@ -108,11 +108,12 @@ export default App;
  * todo - default to the no radio button
  * todo - render radio button checks reactfully
  * todo - conditionally render the bottom half of the chirp input box based on the radio buttons
- * todo - pass a state setter down to the inuts component
+ * todo - pass a state setter down to the inputs component
  * todo - get the input from the chirpbox, radio buttons, and selector all into an object
  * todo - pass that object into state and send it to App
+ * todo - have homepage component update the username and logged in pieces of state
+ * ?done - make a home page component where the user will log in
  * ?done - refactor Timeline to display the chirps with the new data
- * todo - make a home page component where the user will log in
  *
  *
  *
