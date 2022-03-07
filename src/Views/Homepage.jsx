@@ -6,7 +6,7 @@ class Homepage extends React.Component {
   }
   render() {
     return (
-      <div className="card bg-light">
+      <div className="card bg-light shadow">
         <div className="card-body">
           <h5 className="card-title text-center">Please log in</h5>
           <input type="text" value={this.props.username} className="card-text" onChange={(e) => this.props.setUsernameChange(e)} />

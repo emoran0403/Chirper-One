@@ -6,8 +6,11 @@ class Feed extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Inputs {...this.props} />
-        <Timeline {...this.props} />
+        <div className="container d-flex justify-content-around">
+          <Inputs {...this.props} />
+
+          <Timeline {...this.props} />
+        </div>
       </React.Fragment>
     );
   }

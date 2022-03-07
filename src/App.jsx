@@ -22,16 +22,28 @@ class App extends React.Component {
       username: "",
       loggedIn: false,
       chirps: [
-        { ChirpTime: moment().format("MMM Do YY"), uuid: uuidv4(), containsEH: false, quantityEH: "", message: `First, type in the Chirp box to send your first Chirp.` },
-        { ChirpTime: moment().format("MMM Do YY"), uuid: uuidv4(), containsEH: true, quantityEH: "A fair amount", message: `Then, check if your Chirp contains any Ervin Howell.` },
         {
-          ChirpTime: moment().format("MMM Do YY"),
+          ChirpTime: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
+          uuid: uuidv4(),
+          containsEH: false,
+          quantityEH: "",
+          message: `First, type in the Chirp box to send your first Chirp.`,
+        },
+        {
+          ChirpTime: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
+          uuid: uuidv4(),
+          containsEH: true,
+          quantityEH: "A fair amount",
+          message: `Then, check if your Chirp contains any Ervin Howell.`,
+        },
+        {
+          ChirpTime: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
           uuid: uuidv4(),
           containsEH: true,
           quantityEH: "Just a little bit",
           message: `Lastly, if our Chirp contains any Ervin Howell, specify the amount as best you can.`,
         },
-        { ChirpTime: moment().format("MMM Do YY"), uuid: uuidv4(), containsEH: false, quantityEH: "", message: `Happy Chirping!` },
+        { ChirpTime: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"), uuid: uuidv4(), containsEH: false, quantityEH: "", message: `Happy Chirping!` },
       ],
     };
   }
@@ -74,7 +86,7 @@ class App extends React.Component {
     e.preventDefault();
     // creates a chirp with relevant info
     let chirpObject = {
-      ChirpTime: moment().format("MMM Do YY"),
+      ChirpTime: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
       uuid: uuidv4(),
       containsEH: this.state.tempContainsEH,
       quantityEH: this.state.tempQuantityEH,

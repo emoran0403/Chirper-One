@@ -12,28 +12,11 @@ class Inputs extends React.Component {
     super(props);
   }
 
-  // const [inputText, setInputText] = useState("");
-
-  // const handleInputText = (e) => {
-  //   // sets the input text to the value of the input box - allows us to statefully update the contents of the text box
-  //   setInputText(e.target.value);
-  // };
-
-  // const handleButtonClick = () => {
-  //   // if there is no input text, return - this prevents spam clicking the button
-  //   if (!inputText) {
-  //     return;
-  //   }
-  //   // if there is text, pass it to App, then set the input text to an empty string
-  //   props.setChirp(inputText);
-  //   setInputText("");
-  // };
-
   render() {
     return (
       <main className="container ">
-        <section className="row justify-content-center ">
-          <div className="col-md-7 card bg-light">
+        <section className="row">
+          <div className="col-md-10 card shadow bg-light">
             <form className="form-group">
               <input className="form-control mt-3" value={this.props.tempMessage} onChange={this.props.setChirpBox} placeholder="Chirp box!" type="text" />
 

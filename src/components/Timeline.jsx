@@ -5,12 +5,12 @@ import React from "react";
 class Timeline extends React.Component {
   render() {
     return (
-      <div className="container d-flex flex-wrap justify-content-around">
+      <div className="container d-flex flex-wrap justify-content-end">
         {this.props.chirps.map(({ ChirpTime, uuid, containsEH, quantityEH, message }) => (
-          <div key="somekey" className="card" style={{ width: "25rem" }}>
+          <div key={uuid} className="card shadow bg-light my-2" style={{ width: "25rem" }}>
             <div className="card-body">
               <h5 className="card-title">{this.props.username}</h5>
-              {containsEH && <h6>There is {quantityEH} of Ervil Howell</h6>}
+              {containsEH && <h6>There is {quantityEH} of Ervil Howell in this Chirp</h6>}
               <h6 className="card-subtitle mb-2 text-muted">{ChirpTime}</h6>
               <p className="card-text">{message}</p>
               <footer className="blockquote-footer">{uuid}</footer>
