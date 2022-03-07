@@ -1,13 +1,16 @@
 import React from "react";
 
 class Homepage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div className="card bg-light">
         <div className="card-body">
-          <h5 className="card-title text-center">Please log in below</h5>
-          <input type="text" className="card-text" />
-          <button className="btn btn-primary my-2 ms-2" type="button">
+          <h5 className="card-title text-center">Please log in</h5>
+          <input type="text" className="card-text" onKeyPress={this.props.setUsernameChange} />
+          <button className="btn btn-primary my-2 ms-2" type="button" onClick={this.props.setLogin}>
             Login
           </button>
         </div>

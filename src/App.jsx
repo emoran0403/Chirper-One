@@ -16,7 +16,6 @@ class App extends React.Component {
     this.state = {
       username: "",
       loggedIn: false,
-      hasChirped: false,
       chirps: [
         { ChirpTime: moment().format("MMM Do YY"), uuid: uuidv4(), containsEH: false, quantityEH: "", message: `First, type in the Chirp box to send your first Chirp.` },
         { ChirpTime: moment().format("MMM Do YY"), uuid: uuidv4(), containsEH: true, quantityEH: "A fair amount", message: `Then, check if your Chirp contains any Ervin Howell.` },
@@ -30,10 +29,50 @@ class App extends React.Component {
         { ChirpTime: moment().format("MMM Do YY"), uuid: uuidv4(), containsEH: false, quantityEH: "", message: `Happy Chirping!` },
       ],
     };
+    //********************************************************************  Homepage State ***********************************************************************/
+    const handleUsernameChange = (e) => {
+      // controls the username inputbox to update the username state when a key is pressed
+      this.setState({ username: e.target.value });
+    };
 
-    const handleChirp = (e) => {
+    const handleLogin = () => {
+      // log in state setter function tp update the loggedIn state when the login button is clicked
+      this.setState({ loggedIn: true });
+    };
+
+    //********************************************************************  Inputs State ***********************************************************************/
+
+    const handleChirpBoxChange = (e) => {
+      // controls the username inputbox to update the username state when a key is pressed
+      this.setState({ message: e.target.value });
+    };
+
+    const handleContainsEH = (e) => {
+      // controls the radio buttons to update state to reflect if chirp contains EH
+      this.setState({}); //! do i need containsEH as a piece of state, then use it in a chirp and set back to false?
+    };
+
+    const handleQuantityEH = (e) => {
+      // controls the selector to update state to reflect the quantity of EH
+
+      this.setState({}); //! do i need quantityEH as a piece of state, then use it in a chirp and set back to false?
+    };
+
+    const handleChirp = (e, message, containsEH, quantityEH) => {
+      // chirp state setter function to update state to contain a new chirp
+
       e.preventDefault();
-      // this.setState({ chirps: [...this.state.chirps, newChirpObject] });
+      // creates a chirp with relevant info
+      let chirpObject = {
+        ChirpTime: moment().format("MMM Do YY"),
+        uuid: uuidv4(),
+        containsEH: false, //! i need a way to check for this - is it based on state?
+        quantityEH: "", //! i need a way to check for this - is it based on state?
+        message, //! i need a way to check for this - is it based on state?
+      };
+
+      // sets the state to keep the old chirps, and add the new one
+      this.setState({ chirps: [...this.state.chirps, chirpObject] });
     };
   }
 
@@ -54,27 +93,6 @@ class App extends React.Component {
   //   return setloggedIn(!loggedIn);
   // };
 
-  // creates the chirpObject, which contains the message passed from the Input component,
-  // sets the time and uuid on the chirpObject
-
-  // const handleSetChirp = (message) => {
-  //   let chirpObject = {
-  //     // creates a chirp with relevant info
-  //     ChirpTime: moment().format("MMM Do YY"),
-  //     uuid: uuidv4(),
-  //     message,
-  //   };
-
-  //   if (hasChirped) {
-  //     // on chirp 2+, keeps the old chirps and add the new one
-  //     setChirps([...chirps, chirpObject]);
-  //   } else {
-  //     // on first chirp, set the array to override the initial Chirp, and set hasChirped to True
-  //     setChirps([chirpObject]);
-  //     setHasChirped(true);
-  //   }
-  // };
-
   render() {
     return (
       <div>
@@ -83,8 +101,8 @@ class App extends React.Component {
         </div>
 
         <div className="d-flex justify-content-around">
-          {/* <Homepage /> */}
-          <Inputs />
+          {/* <Homepage setLogin={this.handleLogin} setUsernameChange={this.handleUsernameChange} /> */}
+          <Inputs setChirp={this.handleChirp} />
           <Timeline />
         </div>
       </div>
