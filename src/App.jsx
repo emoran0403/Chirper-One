@@ -11,9 +11,12 @@ import Homepage from "./components/Homepage";
 import { render } from "@testing-library/react";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
+      tempContainsEH: false,
+      tempQuantityEH: "",
+      tempMessage: "",
       username: "",
       loggedIn: false,
       chirps: [
@@ -44,21 +47,20 @@ class App extends React.Component {
 
     const handleChirpBoxChange = (e) => {
       // controls the username inputbox to update the username state when a key is pressed
-      this.setState({ message: e.target.value });
+      this.setState({ tempMessage: e.target.value });
     };
 
     const handleContainsEH = (e) => {
       // controls the radio buttons to update state to reflect if chirp contains EH
-      this.setState({}); //! do i need containsEH as a piece of state, then use it in a chirp and set back to false?
+      this.setState({ tempContainsEH: e.target.value }); //! do i need containsEH as a piece of state, then use it in a chirp and set back to false?
     };
 
     const handleQuantityEH = (e) => {
       // controls the selector to update state to reflect the quantity of EH
-
-      this.setState({}); //! do i need quantityEH as a piece of state, then use it in a chirp and set back to false?
+      this.setState({ tempQuantityEH: e.target.value }); //! do i need quantityEH as a piece of state, then use it in a chirp and set back to false?
     };
 
-    const handleChirp = (e, message, containsEH, quantityEH) => {
+    const handleChirp = (e) => {
       // chirp state setter function to update state to contain a new chirp
 
       e.preventDefault();
@@ -66,13 +68,15 @@ class App extends React.Component {
       let chirpObject = {
         ChirpTime: moment().format("MMM Do YY"),
         uuid: uuidv4(),
-        containsEH: false, //! i need a way to check for this - is it based on state?
-        quantityEH: "", //! i need a way to check for this - is it based on state?
-        message, //! i need a way to check for this - is it based on state?
+        containsEH: this.state.tempContainsEH,
+        quantityEH: this.state.tempQuantityEH,
+        message: this.state.tempMessage,
       };
 
       // sets the state to keep the old chirps, and add the new one
       this.setState({ chirps: [...this.state.chirps, chirpObject] });
+      // sets the values of tempContainsEH and tempQuantityEH back to their defaults
+      this.setState({ tempContainsEH: false, tempQuantityEH: "" });
     };
   }
 
@@ -101,9 +105,9 @@ class App extends React.Component {
         </div>
 
         <div className="d-flex justify-content-around">
-          {/* <Homepage setLogin={this.handleLogin} setUsernameChange={this.handleUsernameChange} /> */}
-          <Inputs setChirp={this.handleChirp} />
-          <Timeline />
+          <Homepage {...this.state} setLogin={this.handleLogin} setUsernameChange={this.handleUsernameChange} />
+          {/* <Inputs setChirpBox={this.handleChirpBoxChange} setContainsEh={this.handleContainsEH} setQuantityEH={this.handleQuantityEH} setChirp={this.handleChirp} />
+          <Timeline {...this.state}/> */}
         </div>
       </div>
     );

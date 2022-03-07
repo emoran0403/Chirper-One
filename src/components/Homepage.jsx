@@ -9,7 +9,7 @@ class Homepage extends React.Component {
       <div className="card bg-light">
         <div className="card-body">
           <h5 className="card-title text-center">Please log in</h5>
-          <input type="text" className="card-text" onKeyPress={this.props.setUsernameChange} />
+          <input type="text" value={this.props.username} className="card-text" onChange={(e) => this.props.setUsernameChange(e)} />
           <button className="btn btn-primary my-2 ms-2" type="button" onClick={this.props.setLogin}>
             Login
           </button>

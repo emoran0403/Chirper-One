@@ -1,26 +1,17 @@
 import React, { useState } from "react";
 
 class Inputs extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      name: "React",
-      containsEH: false,
-    };
-    this.onValueChange = this.onValueChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  /**
+   * this.props.setChirpBox={this.handleChirpBoxChange}
+   * this.props.setContainsEh={this.handleContainsEH}
+   * this.props.setQuantityEH={this.handleQuantityEH}
+   * this.props.setChirp={this.handleChirp}
+   */
+
+  constructor(props) {
+    super(props);
   }
 
-  onValueChange(event) {
-    this.setState({
-      containsEH: event.target.value,
-    });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.state.containsEH);
-  }
   // const [inputText, setInputText] = useState("");
 
   // const handleInputText = (e) => {
@@ -43,8 +34,8 @@ class Inputs extends React.Component {
       <main className="container ">
         <section className="row justify-content-center ">
           <div className="col-md-7 card bg-light">
-            <form onSubmit={this.handleSubmit} className="form-group">
-              <input className="form-control mt-3" placeholder="Chirp box!" type="text" />
+            <form className="form-group">
+              <input className="form-control mt-3" onChange={this.props.setChirpBox} placeholder="Chirp box!" type="text" />
 
               <div className="mb-3 d-flex justify-content-between align-items-center">
                 <div>
@@ -80,7 +71,7 @@ class Inputs extends React.Component {
                   </div>
                 </div>
                 <div>
-                  <button type="submit" className="btn btn-primary">
+                  <button type="button" onClick={(e) => this.props.setChirp(e)} className="btn btn-primary">
                     Chirp
                   </button>
                 </div>
@@ -105,7 +96,7 @@ class Inputs extends React.Component {
                   </select>
                 </div>
                 <div>
-                  <button type="button" onClick={(e) => this.props.chirpSetter(e)} className="btn btn-primary">
+                  <button type="button" onClick={(e) => this.props.setChirp(e)} className="btn btn-primary">
                     Chirp
                   </button>
                 </div>
